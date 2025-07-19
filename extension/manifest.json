@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Multi-Platform Feed Filter",
+  "version": "1.0",
+  "description": "Filters out unwanted content from X, Reddit, and YouTube based on topic.",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
