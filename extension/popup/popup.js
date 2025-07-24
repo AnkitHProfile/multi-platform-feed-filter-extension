@@ -1,11 +1,13 @@
-// Save the checkbox state to chrome.storage
-document.getElementById("toggle-filter").addEventListener("change", (event) => {
-  chrome.storage.local.set({ filteringEnabled: event.target.checked });
-});
-
-// Restore checkbox state on popup open
 document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("toggleSwitch");
+
+  // Load stored toggle state
   chrome.storage.local.get("filteringEnabled", (data) => {
-    document.getElementById("toggle-filter").checked = data.filteringEnabled || false;
+    toggle.checked = Boolean(data.filteringEnabled);
+  });
+
+  // Save toggle state on change
+  toggle.addEventListener("change", () => {
+    chrome.storage.local.set({ filteringEnabled: toggle.checked });
   });
 });
